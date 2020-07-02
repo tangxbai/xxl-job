@@ -17,10 +17,12 @@ public class XxlJobGroupDaoTest {
     private XxlJobGroupDao xxlJobGroupDao;
 
     @Test
-    public void test(){
+    public void test() {
         List<XxlJobGroup> list = xxlJobGroupDao.findAll();
+        System.out.println(list);
 
         List<XxlJobGroup> list2 = xxlJobGroupDao.findByAddressType(0);
+        System.out.println(list2);
 
         XxlJobGroup group = new XxlJobGroup();
         group.setAppname("setAppName");
@@ -29,6 +31,7 @@ public class XxlJobGroupDaoTest {
         group.setAddressList("setAddressList");
 
         int ret = xxlJobGroupDao.save(group);
+        System.out.println(ret);
 
         XxlJobGroup group2 = xxlJobGroupDao.load(group.getId());
         group2.setAppname("setAppName2");
@@ -37,8 +40,10 @@ public class XxlJobGroupDaoTest {
         group2.setAddressList("setAddressList2");
 
         int ret2 = xxlJobGroupDao.update(group2);
-
+        System.out.println(ret2);
+        
         int ret3 = xxlJobGroupDao.remove(group.getId());
+        System.out.println(ret3);
     }
 
 }

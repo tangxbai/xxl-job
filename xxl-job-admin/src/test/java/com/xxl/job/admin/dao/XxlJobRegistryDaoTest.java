@@ -26,8 +26,10 @@ public class XxlJobRegistryDaoTest {
         }
 
         List<XxlJobRegistry> list = xxlJobRegistryDao.findAll(1, new Date());
-
+        System.out.println(list);
+        
         int ret2 = xxlJobRegistryDao.removeDead(Arrays.asList(1));
+        System.out.println(ret2);
     }
 
 }

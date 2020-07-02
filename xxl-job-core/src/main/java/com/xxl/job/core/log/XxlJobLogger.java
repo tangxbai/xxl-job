@@ -44,7 +44,7 @@ public class XxlJobLogger {
         if (logFileName!=null && logFileName.trim().length()>0) {
             XxlJobFileAppender.appendLog(logFileName, formatAppendLog);
         } else {
-            logger.info(">>>>>>>>>>> {}", formatAppendLog);
+            logger.info("### {}", formatAppendLog);
         }
     }
 

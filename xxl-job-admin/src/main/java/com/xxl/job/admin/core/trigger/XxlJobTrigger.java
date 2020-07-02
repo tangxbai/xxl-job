@@ -51,7 +51,7 @@ public class XxlJobTrigger {
         // load data
         XxlJobInfo jobInfo = XxlJobAdminConfig.getAdminConfig().getXxlJobInfoDao().loadById(jobId);
         if (jobInfo == null) {
-            logger.warn(">>>>>>>>>>>> trigger fail, jobId invalid，jobId={}", jobId);
+            logger.warn("###> trigger fail, jobId invalid，jobId={}", jobId);
             return;
         }
         if (executorParam != null) {
@@ -93,7 +93,7 @@ public class XxlJobTrigger {
 
     private static boolean isNumeric(String str){
         try {
-            int result = Integer.valueOf(str);
+            Integer.valueOf(str);
             return true;
         } catch (NumberFormatException e) {
             return false;
@@ -121,7 +121,7 @@ public class XxlJobTrigger {
         jobLog.setJobId(jobInfo.getId());
         jobLog.setTriggerTime(new Date());
         XxlJobAdminConfig.getAdminConfig().getXxlJobLogDao().save(jobLog);
-        logger.debug(">>>>>>>>>>> xxl-job trigger start, jobId:{}", jobLog.getId());
+        logger.debug("### xxl-job trigger start, jobId:{}", jobLog.getId());
 
         // 2、init trigger-param
         TriggerParam triggerParam = new TriggerParam();
@@ -181,7 +181,7 @@ public class XxlJobTrigger {
         triggerMsgSb.append("<br>").append(I18nUtil.getString("jobinfo_field_timeout")).append("：").append(jobInfo.getExecutorTimeout());
         triggerMsgSb.append("<br>").append(I18nUtil.getString("jobinfo_field_executorFailRetryCount")).append("：").append(finalFailRetryCount);
 
-        triggerMsgSb.append("<br><br><span style=\"color:#00c0ef;\" > >>>>>>>>>>>"+ I18nUtil.getString("jobconf_trigger_run") +"<<<<<<<<<<< </span><br>")
+        triggerMsgSb.append("<br><br><span style=\"color:#00c0ef;padding-left:5px;border-left:2px solid #00c0ef;\">"+ I18nUtil.getString("jobconf_trigger_run") +"</span><br><br>")
                 .append((routeAddressResult!=null&&routeAddressResult.getMsg()!=null)?routeAddressResult.getMsg()+"<br><br>":"").append(triggerResult.getMsg()!=null?triggerResult.getMsg():"");
 
         // 6、save log trigger-info
@@ -195,7 +195,7 @@ public class XxlJobTrigger {
         jobLog.setTriggerMsg(triggerMsgSb.toString());
         XxlJobAdminConfig.getAdminConfig().getXxlJobLogDao().updateTriggerInfo(jobLog);
 
-        logger.debug(">>>>>>>>>>> xxl-job trigger end, jobId:{}", jobLog.getId());
+        logger.debug("### xxl-job trigger end, jobId:{}", jobLog.getId());
     }
 
     /**
@@ -210,7 +210,7 @@ public class XxlJobTrigger {
             ExecutorBiz executorBiz = XxlJobScheduler.getExecutorBiz(address);
             runResult = executorBiz.run(triggerParam);
         } catch (Exception e) {
-            logger.error(">>>>>>>>>>> xxl-job trigger error, please check if the executor[{}] is running.", address, e);
+            logger.error("### xxl-job trigger error, please check if the executor[{}] is running.", address, e);
             runResult = new ReturnT<String>(ReturnT.FAIL_CODE, ThrowableUtil.toString(e));
         }
 

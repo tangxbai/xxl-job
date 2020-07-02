@@ -37,7 +37,7 @@ public class TriggerCallbackThread {
     private LinkedBlockingQueue<HandleCallbackParam> callBackQueue = new LinkedBlockingQueue<HandleCallbackParam>();
     public static void pushCallBack(HandleCallbackParam callback){
         getInstance().callBackQueue.add(callback);
-        logger.debug(">>>>>>>>>>> xxl-job, push callback request, logId:{}", callback.getLogId());
+        logger.debug("### xxl-job, push callback request, logId:{}", callback.getLogId());
     }
 
     /**
@@ -50,7 +50,7 @@ public class TriggerCallbackThread {
 
         // valid
         if (XxlJobExecutor.getAdminBizList() == null) {
-            logger.warn(">>>>>>>>>>> xxl-job, executor callback config fail, adminAddresses is null.");
+            logger.warn("### xxl-job, executor callback config fail, adminAddresses is null.");
             return;
         }
 
@@ -68,7 +68,7 @@ public class TriggerCallbackThread {
 
                             // callback list param
                             List<HandleCallbackParam> callbackParamList = new ArrayList<HandleCallbackParam>();
-                            int drainToNum = getInstance().callBackQueue.drainTo(callbackParamList);
+                            getInstance().callBackQueue.drainTo(callbackParamList);
                             callbackParamList.add(callback);
 
                             // callback, will retry if error
@@ -86,7 +86,7 @@ public class TriggerCallbackThread {
                 // last callback
                 try {
                     List<HandleCallbackParam> callbackParamList = new ArrayList<HandleCallbackParam>();
-                    int drainToNum = getInstance().callBackQueue.drainTo(callbackParamList);
+                    getInstance().callBackQueue.drainTo(callbackParamList);
                     if (callbackParamList!=null && callbackParamList.size()>0) {
                         doCallback(callbackParamList);
                     }
@@ -95,7 +95,7 @@ public class TriggerCallbackThread {
                         logger.error(e.getMessage(), e);
                     }
                 }
-                logger.info(">>>>>>>>>>> xxl-job, executor callback thread destory.");
+                logger.info("### xxl-job, executor callback thread destory.");
 
             }
         });
@@ -125,7 +125,7 @@ public class TriggerCallbackThread {
                         }
                     }
                 }
-                logger.info(">>>>>>>>>>> xxl-job, executor retry callback thread destory.");
+                logger.info("### xxl-job, executor retry callback thread destory.");
             }
         });
         triggerRetryCallbackThread.setDaemon(true);

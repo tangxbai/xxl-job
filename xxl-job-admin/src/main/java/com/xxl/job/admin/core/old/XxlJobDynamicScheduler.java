@@ -228,7 +228,7 @@
 //        // 5、schedule job
 //        Date date = scheduler.scheduleJob(jobDetail, cronTrigger);
 //
-//        logger.info(">>>>>>>>>>> addJob success(quartz), jobDetail:{}, cronTrigger:{}, date:{}", jobDetail, cronTrigger, date);
+//        logger.info("### addJob success(quartz), jobDetail:{}, cronTrigger:{}, date:{}", jobDetail, cronTrigger, date);
 //        return true;
 //    }
 //
@@ -250,7 +250,7 @@
 //            scheduler.unscheduleJob(triggerKey);    // trigger + job
 //        }*/
 //
-//        logger.info(">>>>>>>>>>> removeJob success(quartz), jobKey:{}", jobKey);
+//        logger.info("### removeJob success(quartz), jobKey:{}", jobKey);
 //        return true;
 //    }
 //
@@ -300,7 +300,7 @@
 //        // cover trigger of job detail
 //        scheduler.scheduleJob(jobDetail, triggerSet, true);*/
 //
-//        logger.info(">>>>>>>>>>> resumeJob success, JobName:{}", jobName);
+//        logger.info("### resumeJob success, JobName:{}", jobName);
 //        return true;
 //    }
 //
@@ -322,7 +322,7 @@
 //            result =  true;
 //        }
 //
-//        logger.info(">>>>>>>>>>> pauseJob {}, triggerKey:{}", (result?"success":"fail"),triggerKey);
+//        logger.info("### pauseJob {}, triggerKey:{}", (result?"success":"fail"),triggerKey);
 //        return result;
 //    }*/
 //
@@ -344,7 +344,7 @@
 //            result = true;
 //        }
 //
-//        logger.info(">>>>>>>>>>> resumeJob {}, triggerKey:{}", (result?"success":"fail"), triggerKey);
+//        logger.info("### resumeJob {}, triggerKey:{}", (result?"success":"fail"), triggerKey);
 //        return result;
 //    }*/
 //
@@ -365,9 +365,9 @@
 //        if (scheduler.checkExists(triggerKey)) {
 //            scheduler.triggerJob(jobKey);
 //            result = true;
-//            logger.info(">>>>>>>>>>> runJob success, jobKey:{}", jobKey);
+//            logger.info("### runJob success, jobKey:{}", jobKey);
 //        } else {
-//        	logger.info(">>>>>>>>>>> runJob fail, jobKey:{}", jobKey);
+//        	logger.info("### runJob fail, jobKey:{}", jobKey);
 //        }
 //        return result;
 //    }*/

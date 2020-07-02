@@ -26,6 +26,7 @@ public class XxlJobInfoDaoTest {
 		System.out.println(list_count);
 
 		List<XxlJobInfo> list2 = xxlJobInfoDao.getJobsByGroup(1);
+		System.out.println(list2);
 	}
 	
 	@Test
@@ -50,6 +51,7 @@ public class XxlJobInfoDaoTest {
 		info.setGlueUpdatetime(new Date());
 
 		int count = xxlJobInfoDao.save(info);
+		System.out.println(count);
 
 		XxlJobInfo info2 = xxlJobInfoDao.loadById(info.getId());
 		info2.setJobCron("jobCron2");
@@ -68,13 +70,15 @@ public class XxlJobInfoDaoTest {
 
 		info2.setUpdateTime(new Date());
 		int item2 = xxlJobInfoDao.update(info2);
+		System.out.println(item2);
 
 		xxlJobInfoDao.delete(info2.getId());
 
 		List<XxlJobInfo> list2 = xxlJobInfoDao.getJobsByGroup(1);
+		System.out.println(list2);
 
 		int ret3 = xxlJobInfoDao.findAllCount();
-
+		System.out.println(ret3);
 	}
 
 }

@@ -20,14 +20,19 @@ public class XxlJobLogDaoTest {
     @Test
     public void test(){
         List<XxlJobLog> list = xxlJobLogDao.pageList(0, 10, 1, 1, null, null, 1);
+        System.out.println(list);
+        
         int list_count = xxlJobLogDao.pageListCount(0, 10, 1, 1, null, null, 1);
-
+        System.out.println(list_count);
+        
         XxlJobLog log = new XxlJobLog();
         log.setJobGroup(1);
         log.setJobId(1);
 
         long ret1 = xxlJobLogDao.save(log);
+        System.out.println(ret1);
         XxlJobLog dto = xxlJobLogDao.load(log.getId());
+        System.out.println(dto);
 
         log.setTriggerTime(new Date());
         log.setTriggerCode(1);
@@ -38,18 +43,17 @@ public class XxlJobLogDaoTest {
         ret1 = xxlJobLogDao.updateTriggerInfo(log);
         dto = xxlJobLogDao.load(log.getId());
 
-
         log.setHandleTime(new Date());
         log.setHandleCode(2);
         log.setHandleMsg("2");
         ret1 = xxlJobLogDao.updateHandleInfo(log);
         dto = xxlJobLogDao.load(log.getId());
 
-
         List<Long> ret4 = xxlJobLogDao.findClearLogIds(1, 1, new Date(), 100, 100);
-
+        System.out.println(ret4);
+        
         int ret2 = xxlJobLogDao.delete(log.getJobId());
-
+        System.out.println(ret2);
     }
 
 }

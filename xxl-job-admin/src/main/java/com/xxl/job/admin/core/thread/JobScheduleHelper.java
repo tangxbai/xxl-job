@@ -84,7 +84,7 @@ public class JobScheduleHelper {
                                 // time-ring jump
                                 if (nowTime > jobInfo.getTriggerNextTime() + PRE_READ_MS) {
                                     // 2.1、trigger-expire > 5s：pass && make next-trigger-time
-                                    logger.warn(">>>>>>>>>>> xxl-job, schedule misfire, jobId = " + jobInfo.getId());
+                                    logger.warn("### xxl-job, schedule misfire, jobId = " + jobInfo.getId());
 
                                     // fresh next
                                     refreshNextValidTime(jobInfo, new Date());
@@ -94,7 +94,7 @@ public class JobScheduleHelper {
 
                                     // 1、trigger
                                     JobTriggerPoolHelper.trigger(jobInfo.getId(), TriggerTypeEnum.CRON, -1, null, null, null);
-                                    logger.debug(">>>>>>>>>>> xxl-job, schedule push trigger : jobId = " + jobInfo.getId() );
+                                    logger.debug("### xxl-job, schedule push trigger : jobId = " + jobInfo.getId() );
 
                                     // 2、fresh next
                                     refreshNextValidTime(jobInfo, new Date());
@@ -143,7 +143,7 @@ public class JobScheduleHelper {
 
                     } catch (Exception e) {
                         if (!scheduleThreadToStop) {
-                            logger.error(">>>>>>>>>>> xxl-job, JobScheduleHelper#scheduleThread error:{}", e);
+                            logger.error("### xxl-job, JobScheduleHelper#scheduleThread error:{}", e);
                         }
                     } finally {
 
@@ -200,7 +200,7 @@ public class JobScheduleHelper {
 
                 }
 
-                logger.info(">>>>>>>>>>> xxl-job, JobScheduleHelper#scheduleThread stop");
+                logger.info("### xxl-job, JobScheduleHelper#scheduleThread stop");
             }
         });
         scheduleThread.setDaemon(true);
@@ -236,7 +236,7 @@ public class JobScheduleHelper {
                         }
 
                         // ring trigger
-                        logger.debug(">>>>>>>>>>> xxl-job, time-ring beat : " + nowSecond + " = " + Arrays.asList(ringItemData) );
+                        logger.debug("### xxl-job, time-ring beat : " + nowSecond + " = " + Arrays.asList(ringItemData) );
                         if (ringItemData.size() > 0) {
                             // do trigger
                             for (int jobId: ringItemData) {
@@ -248,7 +248,7 @@ public class JobScheduleHelper {
                         }
                     } catch (Exception e) {
                         if (!ringThreadToStop) {
-                            logger.error(">>>>>>>>>>> xxl-job, JobScheduleHelper#ringThread error:{}", e);
+                            logger.error("### xxl-job, JobScheduleHelper#ringThread error:{}", e);
                         }
                     }
 
@@ -261,7 +261,7 @@ public class JobScheduleHelper {
                         }
                     }
                 }
-                logger.info(">>>>>>>>>>> xxl-job, JobScheduleHelper#ringThread stop");
+                logger.info("### xxl-job, JobScheduleHelper#ringThread stop");
             }
         });
         ringThread.setDaemon(true);
@@ -290,7 +290,7 @@ public class JobScheduleHelper {
         }
         ringItemData.add(jobId);
 
-        logger.debug(">>>>>>>>>>> xxl-job, schedule push time-ring : " + ringSecond + " = " + Arrays.asList(ringItemData) );
+        logger.debug("### xxl-job, schedule push time-ring : " + ringSecond + " = " + Arrays.asList(ringItemData) );
     }
 
     public void toStop(){
@@ -348,7 +348,7 @@ public class JobScheduleHelper {
             }
         }
 
-        logger.info(">>>>>>>>>>> xxl-job, JobScheduleHelper stop");
+        logger.info("### xxl-job, JobScheduleHelper stop");
     }
 
 }

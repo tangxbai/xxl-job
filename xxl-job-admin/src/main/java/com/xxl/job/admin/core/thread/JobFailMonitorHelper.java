@@ -53,7 +53,7 @@ public class JobFailMonitorHelper {
 								// 1、fail retry monitor
 								if (log.getExecutorFailRetryCount() > 0) {
 									JobTriggerPoolHelper.trigger(log.getJobId(), TriggerTypeEnum.RETRY, (log.getExecutorFailRetryCount()-1), log.getExecutorShardingParam(), log.getExecutorParam(), null);
-									String retryMsg = "<br><br><span style=\"color:#F39C12;\" > >>>>>>>>>>>"+ I18nUtil.getString("jobconf_trigger_type_retry") +"<<<<<<<<<<< </span><br>";
+									String retryMsg = "<br><br><span style=\"color: #F39C12;padding-left:5px;border-left: 2px solid #F39C12;\" >" + I18nUtil.getString("jobconf_trigger_type_retry") + "</span><br>";
 									log.setTriggerMsg(log.getTriggerMsg() + retryMsg);
 									XxlJobAdminConfig.getAdminConfig().getXxlJobLogDao().updateTriggerInfo(log);
 								}
@@ -73,7 +73,7 @@ public class JobFailMonitorHelper {
 
 					} catch (Exception e) {
 						if (!toStop) {
-							logger.error(">>>>>>>>>>> xxl-job, job fail monitor thread error:{}", e);
+							logger.error("### xxl-job, job fail monitor thread error:{}", e);
 						}
 					}
 
@@ -87,7 +87,7 @@ public class JobFailMonitorHelper {
 
                 }
 
-				logger.info(">>>>>>>>>>> xxl-job, job fail monitor thread stop");
+				logger.info("### xxl-job, job fail monitor thread stop");
 
 			}
 		});

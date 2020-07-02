@@ -5,8 +5,11 @@ package com.xxl.job.admin.core.exception;
  */
 public class XxlJobException extends RuntimeException {
 
-    public XxlJobException() {
+	private static final long serialVersionUID = 1L;
+	
+	public XxlJobException() {
     }
+	
     public XxlJobException(String message) {
         super(message);
     }

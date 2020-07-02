@@ -28,12 +28,15 @@ public class XxlJobLogGlueDaoTest {
         logGlue.setAddTime(new Date());
         logGlue.setUpdateTime(new Date());
         int ret = xxlJobLogGlueDao.save(logGlue);
-
+        System.out.println(ret);
+        
         List<XxlJobLogGlue> list = xxlJobLogGlueDao.findByJobId(1);
-
+        System.out.println(list);
+        
         int ret2 = xxlJobLogGlueDao.removeOld(1, 1);
-
+        System.out.println(ret2);
         int ret3 =xxlJobLogGlueDao.deleteByJobId(1);
+        System.out.println(ret3);
     }
 
 }

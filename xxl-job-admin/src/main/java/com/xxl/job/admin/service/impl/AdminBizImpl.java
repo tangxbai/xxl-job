@@ -29,6 +29,7 @@ import java.util.List;
  */
 @Service
 public class AdminBizImpl implements AdminBiz {
+	
     private static Logger logger = LoggerFactory.getLogger(AdminBizImpl.class);
 
     @Resource
@@ -48,7 +49,6 @@ public class AdminBizImpl implements AdminBiz {
             logger.debug(">>>>>>>>> JobApiController.callback {}, handleCallbackParam={}, callbackResult={}",
                     (callbackResult.getCode()==IJobHandler.SUCCESS.getCode()?"success":"fail"), handleCallbackParam, callbackResult);
         }
-
         return ReturnT.SUCCESS;
     }
 
@@ -67,7 +67,7 @@ public class AdminBizImpl implements AdminBiz {
         if (IJobHandler.SUCCESS.getCode() == handleCallbackParam.getExecuteResult().getCode()) {
             XxlJobInfo xxlJobInfo = xxlJobInfoDao.loadById(log.getJobId());
             if (xxlJobInfo!=null && xxlJobInfo.getChildJobId()!=null && xxlJobInfo.getChildJobId().trim().length()>0) {
-                callbackMsg = "<br><br><span style=\"color:#00c0ef;\" > >>>>>>>>>>>"+ I18nUtil.getString("jobconf_trigger_child_run") +"<<<<<<<<<<< </span><br>";
+                callbackMsg = "<br><br><span style=\"color:#00c0ef;padding-left:5px;border-left:2px solid #00c0ef;\" >" + I18nUtil.getString("jobconf_trigger_child_run") + "</span><br>";
 
                 String[] childJobIds = xxlJobInfo.getChildJobId().split(",");
                 for (int i = 0; i < childJobIds.length; i++) {
@@ -122,7 +122,7 @@ public class AdminBizImpl implements AdminBiz {
 
     private boolean isNumeric(String str){
         try {
-            int result = Integer.valueOf(str);
+            Integer.valueOf(str);
             return true;
         } catch (NumberFormatException e) {
             return false;

@@ -1,14 +1,14 @@
 package com.xxl.job.admin.core.util;
 
-import org.hamcrest.core.Is;
-import org.junit.Test;
+import static com.xxl.job.admin.core.util.JacksonUtil.writeValueAsString;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.xxl.job.admin.core.util.JacksonUtil.writeValueAsString;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
+import org.hamcrest.core.Is;
+import org.junit.Test;
 
 public class JacksonUtilTest {
 
@@ -32,7 +32,7 @@ public class JacksonUtilTest {
         String jsonString = "{\"aaa\":\"111\",\"bbb\":\"222\"}";
 
         //when
-        Map result = JacksonUtil.readValue(jsonString, Map.class);
+        Map<String, Object> result = JacksonUtil.readValue(jsonString, Map.class);
 
         //then
         assertThat(result.get("aaa"), Is.<Object>is("111"));
