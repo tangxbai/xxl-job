@@ -17,7 +17,7 @@
 		}
     </style>
 </head>
-<body class="skin-blue fixed layout-top-nav">
+<body class="skin-purple fixed fixed layout-top-nav">
 
 	<div class="wrapper">
 
